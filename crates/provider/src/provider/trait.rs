@@ -859,6 +859,7 @@ pub trait Provider<T: Transport + Clone = BoxTransport, N: Network = Ethereum>:
     {
         self.root().pubsub_frontend()?;
         let id = self.client().request("eth_subscribe", params).await?;
+        println!("opened {id:?}\r");
         self.root().get_subscription(id).await
     }
 

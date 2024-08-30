@@ -135,6 +135,7 @@ impl<T: PubSubConnect> PubSubService<T> {
             .subs
             .server_id_for(&local_id.into())
             .ok_or(TransportErrorKind::pubsub_unavailable())?;
+        println!("Unsubscribe {local_id:?} {server_id:?}\r");
 
         let req = Request::new("eth_unsubscribe", Id::None, [server_id]);
         let brv = req.serialize().expect("no ser error").take_request();
